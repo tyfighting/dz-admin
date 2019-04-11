@@ -3,9 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 Vue.config.devtools = true
+//为vue原型绑定axios
+Vue.prototype.$axios=axios
+//为vue原型绑定固定值
+Vue.prototype.baseUrl='https://data.xinxueshuo.cn/nsi-1.0'
 
 /* eslint-disable no-new */
 new Vue({

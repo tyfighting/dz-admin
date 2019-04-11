@@ -3,21 +3,22 @@
     	<img src="../../assets/logo.png" class="Logo">
     	<form action="Login_submit">
     		<div>
-    			<input type="tel" name="mobile" @keyup="check" v-model="mobile" placeholder="手机号">
+    			<input type="tel" name="mobile" v-fo @keyup="_check" v-model="form.mobile" placeholder="手机号">
     			<span :class={Blue:isBlue}>获取验证码</span>
     		</div>
     		<div>
-    			<input type="text" name="checkPw" placeholder="验证码">
+    			<input type="text" name="checkPw" placeholder="验证码" v-model="form.checkPw">
     		</div>
     		<div>
-      			<Verify @success="alert('success')" @error="alert('error')" :type="3" :barSize="{width:'100%',height:'40px'}" :showButton=false :vOffset="5"></Verify>
+      			<Verify :type="3" :barSize="{width:'100%',height:'40px'}" :showButton="false" :vOffset="5"></Verify>
       		</div>
     	</form>
     	<div class="loginAgree">
-    		<p>新用户登录即自动注册，并表示已同意<a>《用户服务协议》</a></p>
+    		<p>新用户登录即自动注册，并表示已同意<router-link to="/Agreement">《用户服务协议》</router-link></p>
     	</div>
-    	<div class="loginBtn">登录</div>
+    	<div class="loginBtn" @click="_login">登录</div>
     	<div class="connect"><a>关于我们</a></div>
+    	<singleDial :dialText='singleDia.text' v-show="singleDia.status" @ChangeStatus="_changeStatus"></singleDial>
     </div>    
 </template>
 <style type="text/css">
@@ -71,13 +72,16 @@
 .Login form div .verify-msg{
 	line-height: 40px;	
 }
+.Login form div .icon-right:before{
+	z-index: 1;
+}
 .loginAgree{
 	text-align: left;
 	font-size:14px;
 	color:#999;
 }
 .loginAgree a{
-	color: #2395ff;;
+	color: #2395ff;
 }
 .loginBtn{
 	width: 100%;
@@ -95,28 +99,71 @@
 </style>
 <script type="text/javascript">	
     import Verify from 'vue2-verify'
+    import singleDial from '../Common/singleDial'
 	export default{
 		data:function(){
 			return {
-				mobile:'',
-				isBlue:false
+				form:{
+					mobile:'',
+					checkPw:''
+				},				
+				isBlue:false,
+				singleDia:{
+					text:'',
+					status:''
+				}
 			}
 		},
 		methods:{
-			check(e){
+			_check(e){
 				let mobile=e.target.value;
-				let mobileReg=/^1[34578]\d{9}$/
-				this.mobile=mobile.replace(/[^\d]/g,'');
-				if(mobileReg.test(this.mobile)){
-					this.isBlue=true;
-				}else{
-					this.isBlue=false;
+				let mobileReg=/^1[34578]\d{9}$/;
+				this.form.mobile=mobile.replace(/[^\d]/g,'');
+				this.isBlue=mobileReg.test(this.form.mobile);
+			},
+			_login(){
+				let mobileReg=/^1[34578]\d{9}$/;
+				if(!mobileReg.test(this.form.mobile)){
+					this.singleDia.status=true;
+					this.singleDia.text='手机号输入错误';
+					return;
 				}
-				console.log(this.mobile,this.isBlue)
+				if(this.form.checkPw.length!=6){
+					this.singleDia.status=true;
+					this.singleDia.text='验证码输入错误';
+					return;
+				}
+				//http://47.94.21.122:8080/main
+				let url=this.baseUrl+'/user/login.do';
+				// 获取随机数
+				let timestamp=(new Date().getTime()).toString()
+			    let randomnum=''+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+timestamp.slice(4)
+
+			  	let params=new URLSearchParams();
+			  	params.append('userName',this.form.mobile);
+			  	params.append('passWord',this.form.checkPw);
+			  	params.append('token',randomnum);
+				this.$axios.post(url,params).then((data)=>{
+					console.log(data);
+					if(data.status=='200'){
+
+					}else{						
+						this.singleDia.status=true;
+						this.singleDia.text=data.data.msg;
+					}
+				}).catch((errorData)=>{
+					this.singleDia.status=true;
+					this.singleDia.text=errorData;
+					console.log(errorData);
+				})
+			},
+			_changeStatus(obj){
+				this.singleDia.status=obj.status;
 			}
 		},
 		components:{
-			Verify
+			Verify,
+			singleDial
 		}
 	}
 </script>

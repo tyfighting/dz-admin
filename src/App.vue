@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style>
-html,body{
+html,body,p{
   margin: 0;
   padding: 0;
 }
@@ -24,6 +24,7 @@ html,body{
 }
 a,a:active,a:visited,a:active{
   outline: none;  
+  text-decoration: none;
   -webkit-tap-highlight-color: transparent;/*去掉点击高亮效果*/
 }
 </style>
