@@ -11,10 +11,13 @@ export default {
 </script>
 
 <style>
-html,body,p{
+html,body,p,ul,li,h3{
   margin: 0;
   padding: 0;
 }
+html,body{
+  background-color: #f5f5f5;
+} 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -23,8 +26,12 @@ html,body,p{
   color: #2c3e50;
 }
 a,a:active,a:visited,a:active{
+  display: block; 
   outline: none;  
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;/*去掉点击高亮效果*/
+}
+ul,li{
+  list-style: none;
 }
 </style>

@@ -3,8 +3,8 @@
     	<img src="../../assets/logo.png" class="Logo">
     	<form action="Login_submit">
     		<div>
-    			<input type="tel" name="mobile" v-fo @keyup="_check" v-model="form.mobile" placeholder="手机号">
-    			<span :class={Blue:isBlue}>获取验证码</span>
+    			<input type="tel" name="mobile" @keyup="_check" v-model="form.mobile" placeholder="手机号">
+    			<span :class="{Blue:isBlue}">获取验证码</span>
     		</div>
     		<div>
     			<input type="text" name="checkPw" placeholder="验证码" v-model="form.checkPw">
@@ -14,13 +14,18 @@
       		</div>
     	</form>
     	<div class="loginAgree">
-    		<p>新用户登录即自动注册，并表示已同意<router-link to="/Agreement">《用户服务协议》</router-link></p>
+    		<p>新用户登录即自动注册，并表示已同意<router-link to="/Login/Agreement">《用户服务协议》</router-link></p>
     	</div>
     	<div class="loginBtn" @click="_login">登录</div>
     	<div class="connect"><a>关于我们</a></div>
     	<singleDial :dialText='singleDia.text' v-show="singleDia.status" @ChangeStatus="_changeStatus"></singleDial>
     </div>    
 </template>
+<style type="text/css" scoped="scoped">
+	html,body{
+		background: #fff;
+	}
+</style>
 <style type="text/css">
 .Login{
 	padding: 0 35px;
@@ -81,6 +86,7 @@
 	color:#999;
 }
 .loginAgree a{
+	display: inline;
 	color: #2395ff;
 }
 .loginBtn{
@@ -146,7 +152,7 @@
 				this.$axios.post(url,params).then((data)=>{
 					console.log(data);
 					if(data.status=='200'){
-
+						this.$router.push({path:'/Index'})
 					}else{						
 						this.singleDia.status=true;
 						this.singleDia.text=data.data.msg;
