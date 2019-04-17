@@ -1,10 +1,10 @@
 <template>
 	<div class="footer">
 		<ul>
-			<li><router-link to="/Index">首页</router-link></li>
-			<li><router-link to="/">发现</router-link></li>
-			<li><router-link to="/">订单</router-link></li>
-			<li><router-link to="/Personal/Personal">我的</router-link></li>
+			<li><router-link to="/Index"><Icon type="md-home" /><p>首页</p></router-link></li>
+			<li><router-link to="/"><Icon type="md-compass" /><p>发现</p></router-link></li>
+			<li><router-link to="/"><Icon type="md-list-box" /><p>订单</p></router-link></li>
+			<li><router-link to="/Personal/Personal"><Icon type="md-person"/><p>我的</p></router-link></li>
 		</ul>
 	</div>
 </template>
@@ -27,18 +27,25 @@
 	.footer ul li a{
 		display: block;
 		color:#999;
-		padding: 20px 0;
+		padding: 7px 0;
+	}
+	.footer i{
+		font-size:18px;
 	}
 	.footer ul li a.router-link-exact-active{
 		color: #2395ff;
 	}
 </style>
 <script type="text/javascript">
+	import {Icon} from 'iview'
 	export default{
 		data:function(){
 			return {
 
 			}
+		},
+		components:{
+			Icon
 		}
 	}
 </script>

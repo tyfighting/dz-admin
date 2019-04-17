@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+import 'iview/dist/styles/iview.css'    // 使用 CSS
+
+
 
 Vue.config.productionTip = false
 Vue.config.devtools = true
