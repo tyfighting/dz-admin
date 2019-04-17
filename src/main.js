@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import 'iview/dist/styles/iview.css'    // 使用 CSS
+import 'swiper/dist/css/swiper.css'
 
 
 
