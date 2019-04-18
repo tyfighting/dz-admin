@@ -68,6 +68,7 @@
 	import {Affix,Icon} from 'iview'
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
 	import Footer from '../Common/Footer'
+	
 	export default{
 		data:function(){
 			return {
@@ -99,8 +100,9 @@
 		},
 		methods:{
 			getFoodList(){
-				this.$axios.get("http://localhost:8080/static/foodNav.json")
-				.then((res)=>{
+				this.$axios.get("../../../static/json/foodNav.json")
+				 .then((res)=>{
+				 	console.log(res)
 					let swiperSlides=res.data[0].entries;	
 					for (var i = 0; i < swiperSlides.length; i+=10) {
 						this.swiperSlides.push(swiperSlides.slice(i,i+10));
