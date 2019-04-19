@@ -154,7 +154,7 @@
 </style>
 <script type="text/javascript">
 	import Footer from '../Common/Footer'
-	import { Icon, Affix } from 'iview';
+	import { Icon} from 'iview';
 	export default{
 		data:function(){
 			return {
@@ -163,8 +163,7 @@
 		},
 		components:{
 			Footer,
-			Icon,
-			Affix
+			Icon
 		}
 	}
 </script>

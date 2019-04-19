@@ -16,6 +16,7 @@
 		bottom: 0;
 		left: 0;
 		border-top: 1px solid #ddd;
+		z-index: 10;
 	}
 	.footer ul{
 		display: flex;
