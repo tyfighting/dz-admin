@@ -343,10 +343,14 @@
 	import {Affix,Icon,Divider,Row,Col,Rate} from 'iview'
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
 	import Footer from '../Common/Footer'
+<<<<<<< HEAD
 	import banner1 from '../../../static/image/banner/banner1.jpeg'
 	import banner2 from '../../../static/image/banner/banner2.jpeg'
 	import banner3 from '../../../static/image/banner/banner3.jpeg'
 	import banner4 from '../../../static/image/banner/banner4.jpeg'
+=======
+	
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70
 	export default{
 		data:function(){
 			return {
@@ -390,7 +394,12 @@
 		methods:{
 			getFoodList(){
 				this.$axios.get("../../../static/json/foodNav.json")
+<<<<<<< HEAD
 				.then((res)=>{
+=======
+				 .then((res)=>{
+				 	console.log(res)
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70
 					let swiperSlides=res.data[0].entries;	
 					for (var i = 0; i < swiperSlides.length; i+=10) {
 						this.swiperSlides.push(swiperSlides.slice(i,i+10));

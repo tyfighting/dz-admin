@@ -6,7 +6,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133249,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food1.png",
+=======
+		"imgUrl": "../../static/foodNav/food1.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -23,7 +27,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133233,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food2.png",
+=======
+		"imgUrl": "../../static/foodNav/food2.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -40,7 +48,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133169,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food3.png",
+=======
+		"imgUrl": "../../static/foodNav/food3.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -57,7 +69,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133017,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food4.png",
+=======
+		"imgUrl": "../../static/foodNav/food4.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -74,7 +90,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133185,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food5.png",
+=======
+		"imgUrl": "../../static/foodNav/food5.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -91,7 +111,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133193,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food6.png",
+=======
+		"imgUrl": "../../static/foodNav/food6.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -108,7 +132,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133041,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food7.png",
+=======
+		"imgUrl": "../../static/foodNav/food7.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -125,7 +153,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133065,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food8.png",
+=======
+		"imgUrl": "../../static/foodNav/food8.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -142,7 +174,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20159899,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food9.png",
+=======
+		"imgUrl": "../../static/foodNav/food9.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -159,7 +195,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133081,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food10.png",
+=======
+		"imgUrl": "../../static/foodNav/food10.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -176,7 +216,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133161,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food11.png",
+=======
+		"imgUrl": "../../static/foodNav/food11.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -193,7 +237,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133145,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food12.png",
+=======
+		"imgUrl": "../../static/foodNav/food12.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -210,7 +258,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133033,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food13.png",
+=======
+		"imgUrl": "../../static/foodNav/food13.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -227,7 +279,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133209,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food14.png",
+=======
+		"imgUrl": "../../static/foodNav/food14.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -244,7 +300,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133105,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food15.png",
+=======
+		"imgUrl": "../../static/foodNav/food15.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -261,7 +321,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133137,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food16.png",
+=======
+		"imgUrl": "../../static/foodNav/food16.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -278,7 +342,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133089,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food17.png",
+=======
+		"imgUrl": "../../static/foodNav/food17.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
@@ -295,7 +363,11 @@
 		"business_flag": 0,
 		"description": "",
 		"id": 20133121,
+<<<<<<< HEAD:static/json/foodNav.json
 		"imgUrl": "../../../static/image/foodNav/food17.png",
+=======
+		"imgUrl": "../../static/foodNav/food18.png",
+>>>>>>> b8b8bf37c7eb36139eb06573b1607518de94de70:static/json/foodNav.json
 		"is_in_serving": true,
 		"is_need_bind_taobao": true,
 		"is_personalized": false,
