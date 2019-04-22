@@ -95,8 +95,8 @@
 						<p v-for="(v,i) in value.restaurant.activities" :key="i">
 							<span class="activity1" v-if="v.icon_name=='首'">{{v.icon_name}}</span>
 							<span class="activity2" v-else-if="v.icon_name=='减'||v.icon_name=='折'">{{v.icon_name}}</span>
-							<span class="activity3" v-else-if="v.icon_name=='换'||v.icon_name=='特'">{{v.icon_name}}</span>
-							<span class="activity4" v-else-if="v.icon_name=='新'">{{v.icon_name}}</span>
+							<span class="activity3" v-show="toggleNum==i" v-else-if="v.icon_name=='换'||v.icon_name=='特'">{{v.icon_name}}</span>
+							<span class="activity4" v-show="toggleNum==i" v-else-if="v.icon_name=='新'">{{v.icon_name}}</span>
 							<span>{{v.description}}</span>
 						</p>
 						<div @click="toggleDetail(index)">
@@ -404,12 +404,17 @@
 				})
 			},
 			toggleDetail(index){
-				if(this.toggleFlag){
-					this.toggleNum=index;
-				}else{
+				if(index==this.toggleNum){
 					this.toggleNum=-1;
+				}else{
+					this.toggleNum=index;
 				}
-				this.toggleFlag=!this.toggleFlag
+				// if(this.toggleFlag){
+				 	
+				// }else{
+				// 	this.toggleNum=-1;
+				// }
+				// this.toggleFlag=!this.toggleFlag
 			}
 		}
 	}
