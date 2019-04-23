@@ -91,17 +91,17 @@
 						<span v-for="(v,i) in value.restaurant.support_tags" :key="i" v-show="v.type!=20">{{v.text}}</span>
 						<span class="reason" v-show="value.restaurant.recommend.reason!=''"><Icon type="md-thumbs-up" />{{value.restaurant.recommend.reason}}</span>
 					</div>
-					<div class="activity" v-show="value.restaurant.activities" :class="{activityShow:index==toggleNum}">
+					<div class="activity" :class="{activityShow:value.isShow}" v-show="value.restaurant.activities">
 						<p v-for="(v,i) in value.restaurant.activities" :key="i">
 							<span class="activity1" v-if="v.icon_name=='首'">{{v.icon_name}}</span>
 							<span class="activity2" v-else-if="v.icon_name=='减'||v.icon_name=='折'">{{v.icon_name}}</span>
-							<span class="activity3" v-show="toggleNum==i" v-else-if="v.icon_name=='换'||v.icon_name=='特'">{{v.icon_name}}</span>
-							<span class="activity4" v-show="toggleNum==i" v-else-if="v.icon_name=='新'">{{v.icon_name}}</span>
+							<span class="activity3" v-else-if="v.icon_name=='换'||v.icon_name=='特'">{{v.icon_name}}</span>
+							<span class="activity4" v-else-if="v.icon_name=='新'">{{v.icon_name}}</span>
 							<span>{{v.description}}</span>
 						</p>
-						<div @click="toggleDetail(index)">
+						<div @click="toggleDetail(index,value.restaurant.authentic_id)">
 							{{value.restaurant.activities.length}}个活动
-							<Icon type="md-arrow-dropdown" :class="{dropUp:index==toggleNum}"/>
+							<Icon type="md-arrow-dropdown" :class="{dropUp:value.isShow}"/>
 						</div>
 					</div>
 				</Col>
@@ -400,15 +400,27 @@
 			getRestaurants(){
 				this.$axios.get("../../../static/json/restaurants.json")
 				.then((res)=>{
+					
+					for (var i = 0; i < res.data.items.length; i++) {
+						//for (var j = 0; j < res.data.items[i].restaurant.length; j++) {
+							res.data.items[i].isShow=false
+						//};
+					};
 					this.restaurants=res.data.items
 				})
 			},
-			toggleDetail(index){
-				if(index==this.toggleNum){
-					this.toggleNum=-1;
-				}else{
-					this.toggleNum=index;
-				}
+			toggleDetail(index,id){
+				for (var i = 0; i < this.restaurants.length; i++) {
+					if(this.restaurants[i].restaurant.authentic_id==id){
+						this.restaurants[i].isShow=!this.restaurants[i].isShow
+						console.log(this.restaurants)
+					}
+				};
+				// if(index==this.toggleNum){
+				// 	this.toggleNum=-1;
+				// }else{
+				// 	this.toggleNum=index;
+				// }
 				// if(this.toggleFlag){
 				 	
 				// }else{
