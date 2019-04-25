@@ -99,8 +99,14 @@
 							<span class="activity4" v-else-if="v.icon_name=='新'">{{v.icon_name}}</span>
 							<span>{{v.description}}</span>
 						</p>
-						<div @click="toggleDetail(index,value.restaurant.authentic_id)">
-							{{value.restaurant.activities.length}}个活动
+						<section  v-show="value.restaurant.supports">
+							<p v-for="(v,i) in value.restaurant.supports" :key="i">
+								<span class="activity5">{{v.icon_name}}</span>
+								<span>{{v.description}}</span>
+							</p>
+						</section>
+						<div @click="toggleDetail(index,value.restaurant.authentic_id)" v-show="value.restaurant.activities.length+value.restaurant.supports.length>'2'">
+							{{value.restaurant.activities.length+value.restaurant.supports.length}}个活动
 							<Icon type="md-arrow-dropdown" :class="{dropUp:value.isShow}"/>
 						</div>
 					</div>
@@ -338,6 +344,9 @@
 	.restaurants .activity .activity4{
 		background: #00b762;
 	}
+	.restaurants .activity .activity5{
+		background: #999;
+	}
 </style>
 <script type="text/javascript">
 	import {Affix,Icon,Divider,Row,Col,Rate} from 'iview'
@@ -399,12 +408,9 @@
 			},
 			getRestaurants(){
 				this.$axios.get("../../../static/json/restaurants.json")
-				.then((res)=>{
-					
+				.then((res)=>{					
 					for (var i = 0; i < res.data.items.length; i++) {
-						//for (var j = 0; j < res.data.items[i].restaurant.length; j++) {
-							res.data.items[i].isShow=false
-						//};
+						res.data.items[i].isShow=false;
 					};
 					this.restaurants=res.data.items
 				})
@@ -412,21 +418,9 @@
 			toggleDetail(index,id){
 				for (var i = 0; i < this.restaurants.length; i++) {
 					if(this.restaurants[i].restaurant.authentic_id==id){
-						this.restaurants[i].isShow=!this.restaurants[i].isShow
-						console.log(this.restaurants)
+						this.restaurants[i].isShow=!this.restaurants[i].isShow;
 					}
 				};
-				// if(index==this.toggleNum){
-				// 	this.toggleNum=-1;
-				// }else{
-				// 	this.toggleNum=index;
-				// }
-				// if(this.toggleFlag){
-				 	
-				// }else{
-				// 	this.toggleNum=-1;
-				// }
-				// this.toggleFlag=!this.toggleFlag
 			}
 		}
 	}
