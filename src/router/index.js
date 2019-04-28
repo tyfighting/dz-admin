@@ -12,13 +12,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/Index',
       name: 'Index',
       component: Index
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: Login
     },
     {
       path:'/Login/Agreement',
@@ -26,7 +26,7 @@ export default new Router({
       component:Agreement
     },
     {
-      path:'/Personal/Personal',
+      path:'/Personal',
       name:'Personal',
       component:Personal
     }

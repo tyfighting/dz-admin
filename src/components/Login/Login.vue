@@ -10,7 +10,7 @@
     			<input type="text" name="checkPw" placeholder="验证码" v-model="form.checkPw">
     		</div>
     		<div>
-      			<Verify :type="3" :barSize="{width:'100%',height:'40px'}" :showButton="false" :vOffset="5"></Verify>
+      			<Verify :type="3" :barSize="{width:'100%',height:'40px'}" :showButton="false" :vOffset="5" @success="_success"></Verify>
       		</div>
     	</form>
     	<div class="loginAgree">
@@ -21,12 +21,12 @@
     	<singleDial :dialText='singleDia.text' v-show="singleDia.status" @ChangeStatus="_changeStatus"></singleDial>
     </div>    
 </template>
-<style type="text/css" scoped="scoped">
-	html,body{
-		background: #fff;
-	}
+<style type="text/css" scoped>
+html,body{
+	background: #fff;
+}
 </style>
-<style type="text/css">
+<style type="text/css" scoped>
 .Login{
 	padding: 0 35px;
 }
@@ -117,7 +117,8 @@
 				singleDia:{
 					text:'',
 					status:''
-				}
+				},
+				flag:false
 			}
 		},
 		methods:{
@@ -139,6 +140,11 @@
 					this.singleDia.text='验证码输入错误';
 					return;
 				}
+				if(!this.flag){
+					this.singleDia.status=true;
+					this.singleDia.text='验证未通过';
+					return;
+				}
 				//http://47.94.21.122:8080/main
 				let url=this.baseUrl+'/user/login.do';
 				// 获取随机数
@@ -152,7 +158,10 @@
 				this.$axios.post(url,params).then((data)=>{
 					console.log(data);
 					if(data.status=='200'){
-						this.$router.push({path:'/Index'})
+						window.localStorage.setItem("userFlag",true);
+						window.localStorage.setItem("name","zhangyaqi");
+						window.localStorage.setItem("mobile","132****8702");
+						this.$router.push({path:'/Personal'})
 					}else{						
 						this.singleDia.status=true;
 						this.singleDia.text=data.data.msg;
@@ -165,6 +174,9 @@
 			},
 			_changeStatus(obj){
 				this.singleDia.status=obj.status;
+			},
+			_success(){
+				this.flag=true
 			}
 		},
 		components:{
