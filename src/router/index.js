@@ -4,7 +4,7 @@ import Login from '@/components/Login/Login'
 import Agreement from '@/components/Login/Agreement'
 import Index from '@/components/Index/Index'
 import Personal from '@/components/Personal/Personal'
-import Calendar from '@/components/Calendar/Calendar'
+import Discover from '@/components/Discover/Discover'
 
 Vue.use(Router)
 
@@ -31,9 +31,9 @@ export default new Router({
       component:Personal
     },
     {
-      path:'/calendar',
-      name:'Calendar',
-      component:Calendar
+      path:'/discover',
+      name:'Discover',
+      component:Discover
     }
   ]
 })
