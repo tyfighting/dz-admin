@@ -4,11 +4,11 @@ import Login from '@/components/Login/Login'
 import Agreement from '@/components/Login/Agreement'
 import Index from '@/components/Index/Index'
 import Personal from '@/components/Personal/Personal'
+import Calendar from '@/components/Calendar/Calendar'
 
 Vue.use(Router)
 
 export default new Router({
-  // linkActiveClass:"active",
   routes: [
     {
       path: '/',
@@ -16,19 +16,24 @@ export default new Router({
       component: Index
     },
     {
-      path: '/Login',
+      path: '/login',
       name: 'Login',
       component: Login
     },
     {
-      path:'/Login/Agreement',
+      path:'/login/agreement',
       name:'Agreement',
       component:Agreement
     },
     {
-      path:'/Personal',
+      path:'/personal',
       name:'Personal',
       component:Personal
+    },
+    {
+      path:'/calendar',
+      name:'Calendar',
+      component:Calendar
     }
   ]
 })

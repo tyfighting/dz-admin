@@ -392,7 +392,7 @@
     		Col,
     		Rate
 		},
-		mounted(){
+		created(){
 			this.getFoodList();
 			this.getRestaurants();
 		},

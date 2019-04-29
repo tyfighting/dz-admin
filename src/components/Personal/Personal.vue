@@ -1,7 +1,7 @@
 <template>
 	<div class="personal">
 		<div>
-			<router-link to="/Login">
+			<router-link to="/login">
 				<div class="personal-top">
 					<div class="personal-left">
 						<img src="../../assets/loginLogo.png" alt="">
