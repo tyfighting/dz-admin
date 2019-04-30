@@ -1,14 +1,18 @@
 <template>
 	<div class="personal">
 		<div>
-			<router-link to="/Login/Login">
+			<router-link to="/login">
 				<div class="personal-top">
 					<div class="personal-left">
 						<img src="../../assets/loginLogo.png" alt="">
 					</div>
-					<div class="personal-center">
+					<div class="personal-center" v-show="!user.userFlag">
 						<h3>登录/注册</h3>
 						<p><Icon type="md-phone-portrait" />登录后享受更多特权</p>
+					</div>
+					<div class="personal-center" v-show="user.userFlag">
+						<h3>{{user.name}}</h3>
+						<p><Icon type="md-phone-portrait" />{{user.mobile}}</p>
 					</div>
 					<div class="personal-right">
 						<span><Icon type="ios-arrow-forward" /></span>
@@ -74,7 +78,7 @@
 		<Footer></Footer>
 	</div>
 </template>
-<style type="text/css">
+<style scoped>
 .personal i{
 	vertical-align: baseline;
 }
@@ -158,7 +162,12 @@
 	export default{
 		data:function(){
 			return {
-
+				user:{
+					userFlag:window.localStorage.getItem("userFlag"),
+					name:window.localStorage.getItem("name"),
+					mobile:window.localStorage.getItem("mobile")
+				}
+				
 			}
 		},
 		components:{

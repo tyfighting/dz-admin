@@ -61,7 +61,7 @@
 	    <p>14.1本协议中的任何条款或部分条款因违反中国法律而无效的，不影响其他条款的效力。</p>
 	</div>
 </template>
-<style>
+<style scoped>
 	.agreement{
 		padding: 10px;
 	}

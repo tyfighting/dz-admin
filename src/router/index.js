@@ -4,31 +4,36 @@ import Login from '@/components/Login/Login'
 import Agreement from '@/components/Login/Agreement'
 import Index from '@/components/Index/Index'
 import Personal from '@/components/Personal/Personal'
+import Discover from '@/components/Discover/Discover'
 
 Vue.use(Router)
 
 export default new Router({
-  // linkActiveClass:"active",
   routes: [
     {
       path: '/',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/Index',
       name: 'Index',
       component: Index
     },
     {
-      path:'/Login/Agreement',
+      path: '/login',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path:'/login/agreement',
       name:'Agreement',
       component:Agreement
     },
     {
-      path:'/Personal/Personal',
+      path:'/personal',
       name:'Personal',
       component:Personal
+    },
+    {
+      path:'/discover',
+      name:'Discover',
+      component:Discover
     }
   ]
 })
