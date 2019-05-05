@@ -3,7 +3,7 @@
 		<ul>
 			<li><router-link to="/"><Icon type="md-home" /><p>首页</p></router-link></li>
 			<li><router-link to="/discover"><Icon type="md-compass" /><p>发现</p></router-link></li>
-			<li><router-link to="/login"><Icon type="md-list-box" /><p>订单</p></router-link></li>
+			<li><router-link to="/order"><Icon type="md-list-box" /><p>订单</p></router-link></li>
 			<li><router-link to="/personal"><Icon type="md-person"/><p>我的</p></router-link></li>
 		</ul>
 	</div>
