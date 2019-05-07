@@ -188,24 +188,15 @@
 <script>	
 	import {Icon,Divider,Row,Col,Rate} from 'iview'
 	export default{
+		prop:{
+			restaurant:Array
+		},
 		data(){
 			return {
-				restaurants:[],
+				restaurants:[]
 			}
 		},
-		created(){
-			this.getRestaurants();
-		},
-		methods:{
-			getRestaurants(){
-				this.$axios.get("../../../static/json/restaurants.json")
-				.then((res)=>{				
-					for (var i = 0; i < res.data.items.length; i++) {
-						res.data.items[i].isShow=false;
-					};
-					this.restaurants=res.data.items
-				})
-			},
+		methods:{			
 			toggleDetail(index,id){
 				for (var i = 0; i < this.restaurants.length; i++) {
 					if(this.restaurants[i].restaurant.authentic_id==id){
@@ -220,6 +211,11 @@
 			Row,
 			Col,
 			Rate
-		}
+		},
+		watch:{
+	        restaurant(val){    //message即为父组件的值，val参数为值
+	          	this.restaurants = val    //将父组件的值赋给childrenMessage 子组件的值
+	        }
+	    }
 	}	
 </script>

@@ -54,7 +54,7 @@
 	    		</Row>
 	    	</div>
 	    </div>
-	    <Restaurant></Restaurant>
+	    <Restaurant :restaurant='restaurants'></Restaurant>
 		<Footer></Footer>
 	</div>
 </template>
@@ -197,7 +197,8 @@
 		        swiperSlides: [],
 		        banner:[banner1,banner2,banner3,banner4],		        
 		        toggleFlag:true,
-		        toggleNum:-1
+		        toggleNum:-1,
+		        restaurants:[]
 			}
 		},
 		components:{
@@ -213,6 +214,7 @@
 		},
 		created(){
 			this.getFoodList();
+			this.getRestaurants();
 		},
 		methods:{
 			getFoodList(){
@@ -224,7 +226,16 @@
 					}
 				})
 			},
-			
+			getRestaurants(){
+				this.$axios.get("../../../static/json/restaurants.json")
+				.then((res)=>{	
+					console.log(res)			
+					for (var i = 0; i < res.data.items.length; i++) {
+						res.data.items[i].isShow=false;
+					};
+					this.restaurants=res.data.items
+				})
+			},
 		}
 	}
 
