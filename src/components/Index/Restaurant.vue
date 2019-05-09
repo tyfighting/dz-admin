@@ -188,8 +188,10 @@
 <script>	
 	import {Icon,Divider,Row,Col,Rate} from 'iview'
 	export default{
-		prop:{
-			restaurant:Array
+		props:{
+			restaurant:{
+				default:[]
+			}
 		},
 		data(){
 			return {
@@ -213,8 +215,11 @@
 			Rate
 		},
 		watch:{
-	        restaurant(val){    //message即为父组件的值，val参数为值
-	          	this.restaurants = val    //将父组件的值赋给childrenMessage 子组件的值
+	        restaurant:{    //message即为父组件的值，val参数为值
+	        	deep:true,
+	        	handler(val){
+	          		this.restaurants = val    //将父组件的值赋给childrenMessage 子组件的值
+	          	}
 	        }
 	    }
 	}	
