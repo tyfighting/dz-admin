@@ -14,7 +14,7 @@
 	    	<swiper :options="swiperOption">
 			    <swiper-slide v-for="(slide, index) in swiperSlides" :key="index">
 			    	<ul>
-			    		<li v-for="(v,i) in slide" >
+			    		<li v-for="(v,i) in slide" :key="v.id">
 			    			<img :src=v.imgUrl>
 				    		<p>{{v.name}}</p>
 				    	</li>

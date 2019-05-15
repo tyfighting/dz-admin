@@ -1,6 +1,6 @@
 <template>
 	<div class="restaurants">
-		<Row v-for="(value,index) in restaurants" :key="index">
+		<Row v-for="(value,index) in restaurants" :key="value.id">
 			<Col span="5" class="ivu-col-img">
 				<img :src="value.restaurant.image_path">
 			</Col>
@@ -37,7 +37,7 @@
 					<span class="reason" v-show="value.restaurant.recommend.reason!=''"><Icon type="md-thumbs-up" />{{value.restaurant.recommend.reason}}</span>
 				</div>
 				<div class="activity" :class="{activityShow:value.isShow}" v-show="value.restaurant.activities">
-					<p v-for="(v,i) in value.restaurant.activities" :key="i">
+					<p v-for="(v,i) in value.restaurant.activities" :key="v.id">
 						<span class="activity1" v-if="v.icon_name=='首'">{{v.icon_name}}</span>
 						<span class="activity2" v-else-if="v.icon_name=='减'||v.icon_name=='折'">{{v.icon_name}}</span>
 						<span class="activity3" v-else-if="v.icon_name=='换'||v.icon_name=='特'">{{v.icon_name}}</span>
@@ -45,7 +45,7 @@
 						<span>{{v.description}}</span>
 					</p>
 					<section  v-show="value.restaurant.supports">
-						<p v-for="(v,i) in value.restaurant.supports" :key="i">
+						<p v-for="(v,i) in value.restaurant.supports" :key="v.id">
 							<span class="activity5">{{v.icon_name}}</span>
 							<span>{{v.description}}</span>
 						</p>
