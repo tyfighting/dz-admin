@@ -168,7 +168,7 @@
 	
 </style>
 <script type="text/javascript">
-	import {Affix,Icon,Divider,Row,Col} from 'iview'
+	// import {Affix,Icon,Divider,Row,Col} from 'iview'
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
 	import Restaurant from './Restaurant'
 	import Footer from '../Common/Footer'
@@ -203,13 +203,8 @@
 		},
 		components:{
 			Footer,
-			Affix,
-			Icon,
 			swiper,
     		swiperSlide,
-    		Divider,
-    		Row,
-    		Col,
     		Restaurant
 		},
 		created(){

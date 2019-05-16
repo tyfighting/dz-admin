@@ -186,7 +186,6 @@
 	}
 </style>
 <script>	
-	import {Icon,Divider,Row,Col,Rate} from 'iview'
 	export default{
 		props:{
 			restaurant:{
@@ -206,13 +205,6 @@
 					}
 				};
 			}
-		},
-		components:{
-			Icon,
-			Divider,
-			Row,
-			Col,
-			Rate
 		},
 		watch:{
 	        restaurant:{    //message即为父组件的值，val参数为值

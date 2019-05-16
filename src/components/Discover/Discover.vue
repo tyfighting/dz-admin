@@ -81,7 +81,6 @@
 	}
 </style>
 <script type="text/javascript">
-	import {Row,Col,DatePicker} from 'iview'
 	import discover1 from '../../assets/discover1.jpeg'
 	import discover2 from '../../assets/discover2.jpeg'
 	import discover3 from '../../assets/discover3.jpeg'
@@ -90,11 +89,6 @@
 			return {
 				discover:[discover1,discover2,discover3]
 			}
-		},
-		components:{
-			Row,
-			Col,
-			DatePicker
 		},
 		created(){
 			// let params=new URLSearchParams();

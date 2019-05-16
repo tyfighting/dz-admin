@@ -38,15 +38,11 @@
 	}
 </style>
 <script type="text/javascript">
-	import {Icon} from 'iview'
 	export default{
 		data:function(){
 			return {
 
 			}
 		},
-		components:{
-			Icon
-		}
 	}
 </script>
