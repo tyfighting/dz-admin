@@ -1,0 +1,77 @@
+{
+	"alert_msg": "",
+	"broadcast": [],
+	"business_type": 0,
+	"cart": {
+		"agent_fee_tip": "另需配送费5.5元",
+		"deliver_amount": 0,
+		"discount_amount": 0,
+		"extra": [],
+		"group": [],
+		"ingredient_group": [],
+		"is_address_too_far": 0,
+		"max_weight": 10000000,
+		"minimum_order_amount": 20,
+		"original_total": 0,
+		"package_group": [],
+		"restaurant": {
+			"address": "北京市朝阳区望京花园130号楼中段第一层部分",
+			"closing_remain_seconds": 0,
+			"delivery_type": {
+				"bg_colors": ["00aaff", "0085ff"],
+				"name": "蜂鸟专送",
+				"text_color": "ffffff"
+			},
+			"id": "E8183598368504996315",
+			"image_path": "9cc4ea0448bb4f18441fc1197de5e073png",
+			"is_closed": 0,
+			"is_fengniao": 1,
+			"latitude": 40.008318,
+			"longitude": 116.472875,
+			"name": "味多美（望京花园店）",
+			"next_business_time": "",
+			"only_use_poi": 0,
+			"phone": "18501093292",
+			"piecewise_agent_fee": {
+				"rules": [{
+					"fee": 5,
+					"price": 20
+				}]
+			},
+			"scheme": "eleme://catering?restaurant_id=E8183598368504996315",
+			"status": 1,
+			"take_by_self": 1,
+			"type": 0
+		},
+		"total": 0,
+		"total_weight": 0,
+		"tying_sku_group": []
+	},
+	"checkout_button": {
+		"action": "checkout",
+		"scheme": "",
+		"text": "去结算"
+	},
+	"checkout_button_v2": {
+		"action": "forbidden",
+		"forbidden_reason": {
+			"content": "¥20起送",
+			"scheme": "eleme://catering?restaurant_id=E8183598368504996315",
+			"types": [3]
+		},
+		"text": ""
+	},
+	"invalid_foods": [],
+	"is_pindan_available": true,
+	"item_promotion_cell": [],
+	"shop_promotion_cell": [{
+		"add_on_pop_up_tip": "满50减10元，满70减15元",
+		"content": [{
+			"color": "333333",
+			"text": "满50减10元，满70减15元"
+		}],
+		"relate_activity_id": 0,
+		"relate_sku_ids": []
+	}],
+	"toasts": []
+}

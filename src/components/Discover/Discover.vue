@@ -29,9 +29,10 @@
 		        </Row>
 	        </Col>
 	    </Row>
+		<discoverFood :foodList=discoverFood></discoverFood>
 	</div>
 </template>
-<style type="text/css">
+<style type="text/css" scoped>
 	.discover-top{
 		background:#fff;
 	}
@@ -84,23 +85,25 @@
 	import discover1 from '../../assets/discover1.jpeg'
 	import discover2 from '../../assets/discover2.jpeg'
 	import discover3 from '../../assets/discover3.jpeg'
+	import discoverFood from './discoverFood'
 	export default{
 		data(){
 			return {
-				discover:[discover1,discover2,discover3]
+				discover:[discover1,discover2,discover3],
+				discoverFood:null
 			}
 		},
 		created(){
-			// let params=new URLSearchParams();
-			//   	params.append('platform',1);
-			//   	params.append('block_index',0);
-			// this.$axios.post('https://h5.ele.me/restapi/member/v1/discover',params)
-			// .then(res=>{
-			// 	console.log(res)
-			// })
-			// .catch(err=>{
-			// 	console.log(err)
-			// })
+			this.$axios.get("../../static/json/discover.json")
+			.then(res=>{
+				this.discoverFood=res.data.items;
+			})
+			.catch(err=>{
+				console.log(err);
+			})
+		},
+		components:{
+			discoverFood
 		}
 	}
 	
