@@ -45,16 +45,14 @@
 	    	<div class="divider">
 	    		<Divider>推荐商家</Divider>
 	    	</div>
-	    	<div class="order">
-	    		<Row>
-	    			<Col span="6">综合排序<Icon type="md-arrow-dropdown" /></Col>
-			        <Col span="6">距离最近</Col>
-			        <Col span="6">品质联盟</Col>
-			        <Col span="6">筛选<Icon type="ios-funnel" /></Col>
-	    		</Row>
-	    	</div>
 	    </div>
-	    <Restaurant :restaurant='restaurants'></Restaurant>
+		<div class="order">
+			<div :class="{active:activeFlag[0]}" @click="order(1)">综合排序<Icon type="md-arrow-dropdown" /></div>
+			<div :class="{active:activeFlag[1]}" @click="order(2)">距离最近</div>
+			<div :class="{active:activeFlag[2]}" @click="order(3)">品质联盟</div>
+			<div :class="{active:activeFlag[3]}" @click="order(4)">筛选<Icon type="ios-funnel" /></div>
+		</div>
+	    <Restaurant :restaurants='restaurants'></Restaurant>
 		<Footer></Footer>
 	</div>
 </template>
@@ -162,13 +160,26 @@
 	.ivu-divider-horizontal.ivu-divider-with-text-center:after, .ivu-divider-horizontal.ivu-divider-with-text-center:before{
 		border-color: #999;
 	}
-	.order .ivu-row{
-		margin: 20px 0 0 0;
+	.order{
+		position: sticky;
+		top: 52px;
+		background: #fff;
+		padding:0px 2%;
+		z-index: 10;
+		display: flex;
 	}
-	
+	.order div{
+		line-height: 38px;
+		color: #666;
+		flex: 1;
+		text-align: center;
+	}
+	.order div.active{
+		color: #333;    
+		font-weight: bold;
+	}
 </style>
 <script type="text/javascript">
-	// import {Affix,Icon,Divider,Row,Col} from 'iview'
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
 	import Restaurant from './Restaurant'
 	import Footer from '../Common/Footer'
@@ -198,7 +209,8 @@
 		        banner:[banner1,banner2,banner3,banner4],		        
 		        toggleFlag:true,
 		        toggleNum:-1,
-		        restaurants:[]
+				restaurants:[],
+				activeFlag:[true,false,false,false]
 			}
 		},
 		components:{
@@ -223,14 +235,32 @@
 			},
 			getRestaurants(){
 				this.$axios.get("../../../static/json/restaurants.json")
-				.then((res)=>{	
-					console.log(res)			
+				.then((res)=>{		
 					for (var i = 0; i < res.data.items.length; i++) {
 						res.data.items[i].isShow=false;
 					};
 					this.restaurants=res.data.items
 				})
 			},
+			change(){
+				this.restaurants=_shuffle(this.restaurants)
+			},
+			order(num){
+				this.activeFlag=[false,false,false,false];
+				this.activeFlag[num-1]=true;
+				if(num=='1'){
+
+				}else if(num=='2'){
+					this.restaurants=this._.shuffle(this.restaurants);
+				}else if(num=='3'){
+					this.restaurants=this._.shuffle(this.restaurants);
+					// this.restaurants.forEach(v => {
+					// 	console.log(v.restaurant.name)
+					// });
+				}else if(num=='4'){
+
+				}
+			}
 		}
 	}
 

@@ -7,6 +7,8 @@ import axios from 'axios'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css'    // 使用 CSS
 import 'swiper/dist/css/swiper.css'
+import _ from 'lodash'
+Vue.prototype._ = _
 
 
 
@@ -37,7 +39,7 @@ axios.interceptors.request.use(function(config){
 axios.interceptors.response.use(function(response){
 	setTimeout(() => {
 	    iView.Spin.hide();
-	}, 3000);
+	}, 1000);
 	return response;
 })
 /* eslint-disable no-new */

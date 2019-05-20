@@ -30,6 +30,7 @@
 	        </Col>
 	    </Row>
 		<discoverFood :foodList=discoverFood></discoverFood>
+		<Footer></Footer>
 	</div>
 </template>
 <style type="text/css" scoped>
@@ -86,6 +87,7 @@
 	import discover2 from '../../assets/discover2.jpeg'
 	import discover3 from '../../assets/discover3.jpeg'
 	import discoverFood from './discoverFood'
+	import Footer from '../Common/Footer'
 	export default{
 		data(){
 			return {
@@ -103,7 +105,8 @@
 			})
 		},
 		components:{
-			discoverFood
+			discoverFood,
+			Footer
 		}
 	}
 	

@@ -80,6 +80,7 @@
 	.restaurants .ivu-col-text{
 		text-align: left;
 		padding:0 5px;
+		color: #666;
 	}
 	.restaurants .ivu-col-text>p{
 		display: flex;
@@ -89,6 +90,8 @@
 	}
 	.restaurants .ivu-col-text p.Rname{
 		font-size: 14px;
+		color: #333;
+		font-weight: bold;
 	}
 	.restaurants .ivu-rate{
 		font-size: 10px;
@@ -187,14 +190,15 @@
 </style>
 <script>	
 	export default{
-		props:{
-			restaurant:{
-				default:[]
-			}
-		},
+		props:['restaurants'],
+		// props:{
+		// 	restaurant:{
+		// 		default:[]
+		// 	}
+		// },
 		data(){
 			return {
-				restaurants:[]
+				// restaurants:[]
 			}
 		},
 		methods:{			
@@ -206,13 +210,13 @@
 				};
 			}
 		},
-		watch:{
-	        restaurant:{    //message即为父组件的值，val参数为值
-	        	deep:true,
-	        	handler(val){
-	          		this.restaurants = val    //将父组件的值赋给childrenMessage 子组件的值
-	          	}
-	        }
-	    }
+		// watch:{
+	    //     restaurant:{    //message即为父组件的值，val参数为值
+	    //     	deep:true,
+	    //     	handler(val){
+	    //       		this.restaurants = val    //将父组件的值赋给childrenMessage 子组件的值
+	    //       	}
+	    //     }
+	    // }
 	}	
 </script>
