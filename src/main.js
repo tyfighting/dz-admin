@@ -10,10 +10,12 @@ import 'swiper/dist/css/swiper.css'
 import _ from 'lodash'
 Vue.prototype._ = _
 
-
+require('./mock.js')
+require('./mock/index.js')
 
 Vue.config.productionTip = false
 Vue.config.devtools = true
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 //为vue原型绑定axios
 Vue.prototype.$axios=axios
 //为vue原型绑定固定值

@@ -6,6 +6,7 @@ import Index from '@/components/Index/Index'
 import Personal from '@/components/Personal/Personal'
 import Discover from '@/components/Discover/Discover'
 import Order from '@/components/Order/Order'
+import helloVue from '@/components/helloVue'
 
 Vue.use(Router)
 
@@ -57,6 +58,11 @@ export default new Router({
       path:'/order',
       name:'Order',
       component:Order
+    },
+    {
+      path:'/helloVue',
+      name:'helloVue',
+      component:helloVue
     }
   ]
 })
