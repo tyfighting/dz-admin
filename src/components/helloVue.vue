@@ -12,6 +12,7 @@
     },
     created() {
       this.setNewsApi();
+      this.getMusic();
     },
     methods:{
       setNewsApi() {
@@ -20,7 +21,16 @@
           console.log(res);
           this.newsListShow = res.articles;
         });      
-      }      
+      },
+      getMusic(){
+        this.$axios.get('https://music.163.com/weapi/cdns?csrf_token=')
+        .then((res)=>{
+          console.log(res)
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
+      }     
     }
   }
 </script>

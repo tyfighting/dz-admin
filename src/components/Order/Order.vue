@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<div class="unlogin" v-show='userFlag'>
+		<div class="unlogin" v-if='userFlag'>
 			<img src="https://fuss10.elemecdn.com/d/60/70008646170d1f654e926a2aaa3afpng.png" />
 			<p>登录后查看外卖订单</p>
 			<router-link to="/login">立即登录</router-link>
 		</div>
-		<div v-show='!userFlag' class="order-list">
+		<div v-if='!userFlag' class="order-list">
 			<div class="order-item" v-for="(v,i) in orderList" :key="i">
 					<p class="restaurant_name">
 						<span>{{v.restaurant_name}}</span>
@@ -57,12 +57,13 @@
 	}
 	.restaurant_name span:first-child{
 		flex: 3;
-		font-size: 16px;
+		font-size: 14px;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		line-height: 30px;
 		color: #333;
+		font-weight: bold;
 	}
 	.restaurant_name span:last-child{
 		flex: 2;
