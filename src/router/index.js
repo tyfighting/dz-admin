@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login/Login'
-import Agreement from '@/components/Login/Agreement'
-import Index from '@/components/Index/Index'
-import Personal from '@/components/Personal/Personal'
-import Discover from '@/components/Discover/Discover'
-import Order from '@/components/Order/Order'
-import helloVue from '@/components/helloVue'
+const Login=()=>import('@/components/Login/Login')
+const Agreement=()=>import ('@/components/Login/Agreement')
+const Index=()=>import ('@/components/Index/Index')
+const Personal=()=>import ('@/components/Personal/Personal')
+const Discover=()=>import ('@/components/Discover/Discover')
+const Order=()=>import ('@/components/Order/Order')
+const helloVue=()=>import ('@/components/helloVue')
 
 Vue.use(Router)
 

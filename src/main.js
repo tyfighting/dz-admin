@@ -10,8 +10,8 @@ import 'swiper/dist/css/swiper.css'
 import _ from 'lodash'
 Vue.prototype._ = _
 
-require('./mock.js')
-require('./mock/index.js')
+// require('./mock.js')
+// require('./mock/index.js')
 
 Vue.config.productionTip = false
 Vue.config.devtools = true

@@ -18,9 +18,12 @@
     },
     methods:{
       setNewsApi() {
-        this.$axios.post('/news/index', 'type=top&key=123456')
+        let params=new URLSearchParams();
+		  	params.append('username','zhangyaqi');
+        params.append('mobile','13271508702');
+        this.$axios.post('/api/user/addUser',params)
         .then(res => {
-          this.newsListShow = res.articles;
+          console.log(res)
         });      
       },
       getGitHub(){
@@ -50,10 +53,10 @@
       getMain(){
         this.$axios.get('http://47.94.21.122:8080/main')
         .then(res=>{
-          console.log(res);
+          // console.log(res);
         })
         .catch(err=>{
-          console.log(err)
+          // console.log(err)
         })
       } 
     }
