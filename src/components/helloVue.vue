@@ -21,7 +21,7 @@
         let params=new URLSearchParams();
 		  	params.append('username','zhangyaqi');
         params.append('mobile','13271508702');
-        this.$axios.post('/api/user/addUser',params)
+        this.$axios.get('/api/user/addUser')
         .then(res => {
           console.log(res)
         });      

@@ -32,11 +32,8 @@ module.exports = {
     cacheBusting: true,
     proxyTable: {
       '/api': {
-        target: 'http://localhost:3000/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
+        target: 'http://192.168.0.106:3000/',
+        changeOrigin: true
       }
     },
     cssSourceMap: true

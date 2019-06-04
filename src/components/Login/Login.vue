@@ -121,6 +121,12 @@ html,body{
 				flag:false
 			}
 		},
+		created(){
+			this.$axios.get('/api/user/login?name=zyq&passWord=123')
+			.then((data)=>{
+				console.log(data);
+			})
+		},
 		methods:{
 			_check(e){
 				let mobile=e.target.value;
@@ -154,18 +160,18 @@ html,body{
 			  	let params=new URLSearchParams();
 			  	params.append('userName',this.form.mobile);
 			  	params.append('passWord',this.form.checkPw);
-			  	params.append('token',randomnum);
-				this.$axios.post(url,params).then((data)=>{
+			  	// params.append('token',randomnum);
+				this.$axios.get(`/api/user/login?name=${this.form.mobile}&passWord=${this.form.checkPw}`).then((data)=>{
 					console.log(data);
-					if(data.status=='200'){
-						window.localStorage.setItem("userFlag",true);
-						window.localStorage.setItem("name","zhangyaqi");
-						window.localStorage.setItem("mobile","132****8702");
-						this.$router.push({path:'/personal'})
-					}else{						
-						this.singleDia.status=true;
-						this.singleDia.text=data.data.msg;
-					}
+					// if(data.status=='200'){
+					// 	window.localStorage.setItem("userFlag",true);
+					// 	window.localStorage.setItem("name","zhangyaqi");
+					// 	window.localStorage.setItem("mobile","132****8702");
+					// 	this.$router.push({path:'/personal'})
+					// }else{						
+					// 	this.singleDia.status=true;
+					// 	this.singleDia.text=data.data.msg;
+					// }
 				}).catch((errorData)=>{
 					this.singleDia.status=true;
 					this.singleDia.text=errorData;
