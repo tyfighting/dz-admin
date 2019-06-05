@@ -4,13 +4,13 @@
     	<form action="Login_submit">
     		<div>
     			<input type="tel" name="mobile" @keyup="_check" v-model="form.mobile" placeholder="手机号">
-    			<span :class="{Blue:isBlue}">获取验证码</span>
+    			<span :class="{Blue:isBlue}" @click="_getCheck">获取验证码</span>
     		</div>
     		<div>
-    			<input type="text" name="checkPw" placeholder="验证码" v-model="form.checkPw">
+    			<input type="text" name="checkPw" placeholder="验证码" v-model="form.checkPw" :disabled="disableFlag">
     		</div>
-    		<div>
-      			<Verify :type="3" :barSize="{width:'100%',height:'40px'}" :showButton="false" :vOffset="5" @success="_success"></Verify>
+    		<div v-if="flag">
+      			<Verify :type="3" :barSize="{width:'100%',height:'40px'}" :showButton="false" :vOffset="5" @success="_success" @error="_error"></Verify>
       		</div>
     	</form>
     	<div class="loginAgree">
@@ -18,14 +18,15 @@
     	</div>
     	<div class="loginBtn" @click="_login">登录</div>
     	<div class="connect"><a>关于我们</a></div>
-    	<singleDial :dialText='singleDia.text' v-show="singleDia.status" @ChangeStatus="_changeStatus"></singleDial>
+		<Modal v-model="modal" class-name="vertical-center-modal">
+			<div style="text-align:center">{{modalText}}</div>
+			<div slot="footer" class="modal_footer">
+				<Button type="primary" size="large" @click="modal=false">确定</Button>
+			</div>
+		</Modal>
+    	<!-- <singleDial :dialText='singleDia.text' v-show="singleDia.status" @ChangeStatus="_changeStatus"></singleDial> -->
     </div>    
 </template>
-<style type="text/css" scoped>
-html,body{
-	background: #fff;
-}
-</style>
 <style type="text/css" scoped>
 	.Login{
 		padding: 0 35px;
@@ -102,30 +103,35 @@ html,body{
 		color: #999;
 		font-size:12px;
 	}
+	.vertical-center-modal{
+		display: flex;
+		align-content: center;
+		justify-content: center;
+		/* width: 80%; */
+	}
+	.vertical-center-modal .ivu-modal{
+		top: 0;
+	}
 </style>
 <script type="text/javascript">	
     import Verify from 'vue2-verify'
-    import singleDial from '../Common/singleDial'
+	// import singleDial from '../Common/singleDial'
+	import {Modal,Button} from 'iview'
 	export default{
 		data:function(){
 			return {
 				form:{
-					mobile:'',
-					checkPw:''
+					mobile:'',//用户输入的手机号
+					checkPw:''//用户输入的验证码
 				},				
-				isBlue:false,
-				singleDia:{
-					text:'',
-					status:''
-				},
-				flag:false
+				isBlue:false,//获取验证码五个字是否变蓝
+				flag:false,//滑块验证是否显示
+				disableFlag:true,//可否输入验证码
+				check:'',//后台获取到的验证码
+				modal:false,//弹框是否显示
+				modalText:'',//弹框提示内容
+				verifyFlag:false//滑块验证是否通过
 			}
-		},
-		created(){
-			this.$axios.get('/api/user/login?name=zyq&passWord=123')
-			.then((data)=>{
-				console.log(data);
-			})
 		},
 		methods:{
 			_check(e){
@@ -134,60 +140,61 @@ html,body{
 				this.form.mobile=mobile.replace(/[^\d]/g,'');
 				this.isBlue=mobileReg.test(this.form.mobile);
 			},
+			_getCheck(){
+				this.$axios.get('/api/user/check')
+				.then((data)=>{
+					console.log(data.data.check);
+					if(data.data.resp_code=='200'){
+						this.disableFlag=false;
+						this.check=data.data.check;
+						this.flag=true;
+					}
+				})
+			},
 			_login(){
 				let mobileReg=/^1[34578]\d{9}$/;
 				if(!mobileReg.test(this.form.mobile)){
-					this.singleDia.status=true;
-					this.singleDia.text='手机号输入错误';
+					this.modal=true;
+					this.modalText='手机号输入错误';
 					return;
 				}
-				if(this.form.checkPw.length!=6){
-					this.singleDia.status=true;
-					this.singleDia.text='验证码输入错误';
+				if(this.form.checkPw!=this.check){
+					this.modal=true;
+					this.modalText='验证码输入错误';
 					return;
 				}
-				if(!this.flag){
-					this.singleDia.status=true;
-					this.singleDia.text='验证未通过';
+				if(!this.verifyFlag){
+					this.modal=true;
+					this.modalText='滑块验证未通过';
 					return;
 				}
-				//http://47.94.21.122:8080/main
-				let url=this.baseUrl+'/user/login.do';
-				// 获取随机数
-				let timestamp=(new Date().getTime()).toString()
-			    let randomnum=''+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+Math.floor(Math.random()*10)+timestamp.slice(4)
-
-			  	let params=new URLSearchParams();
-			  	params.append('userName',this.form.mobile);
-			  	params.append('passWord',this.form.checkPw);
-			  	// params.append('token',randomnum);
-				this.$axios.get(`/api/user/login?name=${this.form.mobile}&passWord=${this.form.checkPw}`).then((data)=>{
-					console.log(data);
-					// if(data.status=='200'){
-					// 	window.localStorage.setItem("userFlag",true);
-					// 	window.localStorage.setItem("name","zhangyaqi");
-					// 	window.localStorage.setItem("mobile","132****8702");
-					// 	this.$router.push({path:'/personal'})
-					// }else{						
-					// 	this.singleDia.status=true;
-					// 	this.singleDia.text=data.data.msg;
-					// }
-				}).catch((errorData)=>{
-					this.singleDia.status=true;
-					this.singleDia.text=errorData;
+				this.$axios.get(`/api/user/login?mobile=${this.form.mobile}`)
+				.then((data)=>{
+					if(data.data.resp_code=='200'){
+						window.localStorage.setItem("token",data.data.token);
+						this.$router.push({path:'/personal'})
+					}else{						
+						this.singleDia.status=true;
+						this.singleDia.text=data.data.msg;
+					}
+				})
+				.catch((errorData)=>{
 					console.log(errorData);
 				})
 			},
-			_changeStatus(obj){
-				this.singleDia.status=obj.status;
+			_error(){
+				this.modalText='滑块验证未通过';
+				this.modal=true;
+				this.verifyFlag=false;
 			},
 			_success(){
-				this.flag=true
+				this.verifyFlag=true;
 			}
 		},
 		components:{
 			Verify,
-			singleDial
+			Modal,
+			Button
 		}
 	}
 </script>

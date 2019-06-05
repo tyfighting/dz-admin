@@ -189,6 +189,7 @@
 	}
 </style>
 <script>	
+	import {Row,Col,Divider,Icon,Rate} from 'iview';
 	export default{
 		props:['restaurants'],
 		// props:{
@@ -217,6 +218,13 @@
 	    //       		this.restaurants = val    //将父组件的值赋给childrenMessage 子组件的值
 	    //       	}
 	    //     }
-	    // }
+		// }
+		components:{
+			Row,
+			Col,
+			Divider,
+			Icon,
+			Rate
+		}
 	}	
 </script>

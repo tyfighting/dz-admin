@@ -34,4 +34,11 @@ a,a:active,a:visited,a:active{
 ul,li{
   list-style: none;
 }
+.modal_footer{
+  padding: 10px 0;
+  text-align: center;
+}
+.modal_footer button{
+  width: 80%;
+}
 </style>

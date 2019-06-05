@@ -181,6 +181,7 @@
 </style>
 <script type="text/javascript">
 	import { swiper, swiperSlide } from 'vue-awesome-swiper'
+	import {Icon,Affix,Divider} from 'iview'
 	import Restaurant from './Restaurant'
 	import Footer from '../Common/Footer'
 	import banner1 from '../../../static/image/banner/banner1.jpeg'
@@ -217,7 +218,10 @@
 			Footer,
 			swiper,
     		swiperSlide,
-    		Restaurant
+			Restaurant,
+			Icon,
+			Affix,
+			Divider
 		},
 		created(){
 			this.getFoodList();

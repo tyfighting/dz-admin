@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<div>
 		<Row class="discover-top">
 	        <Col span="12" class="discover-left">
@@ -88,6 +88,7 @@
 	import discover3 from '../../assets/discover3.jpeg'
 	import discoverFood from './discoverFood'
 	import Footer from '../Common/Footer'
+	import {Row,Col} from 'iview'
 	export default{
 		data(){
 			return {
@@ -106,7 +107,9 @@
 		},
 		components:{
 			discoverFood,
-			Footer
+			Footer,
+			Row,
+			Col
 		}
 	}
 	

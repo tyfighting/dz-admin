@@ -158,19 +158,19 @@
 </style>
 <script type="text/javascript">
 	import Footer from '../Common/Footer'
+	import {Icon} from 'iview'
 	export default{
 		data:function(){
 			return {
 				user:{
-					userFlag:window.localStorage.getItem("userFlag"),
-					name:window.localStorage.getItem("name"),
-					mobile:window.localStorage.getItem("mobile")
+					userFlag:window.localStorage.getItem("token"),
 				}
 				
 			}
 		},
 		components:{
 			Footer,
+			Icon
 		}
 	}
 </script>

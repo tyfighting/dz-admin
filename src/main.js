@@ -4,25 +4,28 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-import iView from 'iview';
-import 'iview/dist/styles/iview.css'    // 使用 CSS
 import 'swiper/dist/css/swiper.css'
 import _ from 'lodash'
 Vue.prototype._ = _
+import 'iview/dist/styles/iview.css';
 
+// 引入mock数据的两种方式
+// 自动生成mock数据
 // require('./mock.js')
+// 引入json文件
 // require('./mock/index.js')
 
-Vue.config.productionTip = false
-Vue.config.devtools = true
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+Vue.config.productionTip = false;
+Vue.config.devtools = true;
 //为vue原型绑定axios
 Vue.prototype.$axios=axios
 //为vue原型绑定固定值
-Vue.prototype.baseUrl='https://data.xinxueshuo.cn/nsi-1.0'
-Vue.use(iView);
+// Vue.prototype.baseUrl='https://data.xinxueshuo.cn/nsi-1.0'
+import { Spin,Icon } from 'iview';
+Vue.component('Spin', Spin);
+Vue.component('Icon', Icon);
 axios.interceptors.request.use(function(config){
-	iView.Spin.show({
+	Spin.show({
 	    render: (h) => {
 	        return h('div', [
 	            h('Icon', {
@@ -43,7 +46,7 @@ axios.interceptors.request.use(function(config){
 })
 axios.interceptors.response.use(function(response){
 	setTimeout(() => {
-	    iView.Spin.hide();
+	    Spin.hide();
 	}, 1000);
 	return response;
 })
