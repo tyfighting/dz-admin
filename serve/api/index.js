@@ -12,7 +12,17 @@ conn.connect(err=>{
     }
 });
 //用户登录验证码生成
-router.get('/person',(req,res)=>{
+router.get('/restaurant',(req,res)=>{
+    let selectUser;
+    if(req.query.order=='1'){
+        selectUser='SELECT * from restaurant';
+    }else if(req.query.order=='2'){
+        // 按照距离升序排列
+        selectUser='SELECT * from restaurant order by distance';
+    }else if(req.query.order=='3'){
+        // 按照距离升序排列
+        selectUser='SELECT * from restaurant order by distance';
+    }
     const selectUser='SELECT mobile FROM user where token=?';    
     conn.query(selectUser,[req.query.token], function(err, result) {
         if (err)console.log(err);

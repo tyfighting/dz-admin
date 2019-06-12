@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<div class="unlogin" v-if='userFlag'>
+		<div class="unlogin" v-if='!userFlag'>
 			<img src="https://fuss10.elemecdn.com/d/60/70008646170d1f654e926a2aaa3afpng.png" />
 			<p>登录后查看外卖订单</p>
 			<router-link to="/login">立即登录</router-link>
 		</div>
-		<div v-if='!userFlag' class="order-list">
+		<div v-if='userFlag' class="order-list">
 			<div class="order-item" v-for="(v,i) in orderList" :key="i">
 					<p class="restaurant_name">
 						<span>{{v.restaurant_name}}</span>
@@ -97,31 +97,19 @@
 	export default{
 		data(){
 			return {
-				userFlag:true,
+				userFlag:window.localStorage.getItem("token"),
 				orderList:[]
 			}
 		},
 		created(){
-			if(localStorage.getItem("mobile")){
-				this.userFlag=false;
-			}else{
-				this.userFlag=true;
-			}
-      		this.getOrder();
+			this.getOrder();
 		},
 		components:{
 			Footer
 		},
-		watch:{
-			$route(to,from){
-				if(!localStorage.getItem("mobile")){
-					this.$router.push({path:'/login'})
-				}
-			}
-		},
 		methods:{
 			getOrder(){
-				this.$axios.get('/user/order')
+				this.$axios.get('../../../static/json/order.json')
 				.then(res => {
 					this.orderList = res.data;
 				})

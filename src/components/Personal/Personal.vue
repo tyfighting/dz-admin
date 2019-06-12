@@ -1,7 +1,7 @@
 <template>
 	<div class="personal">
 		<div>
-			<router-link to="/login">
+			<router-link :to="user.mobile?'':'/login'">
 				<div class="personal-top">
 					<div class="personal-left">
 						<img src="../../assets/loginLogo.png" alt="">
@@ -164,6 +164,7 @@
 			return {
 				user:{
 					userFlag:window.localStorage.getItem("token"),
+					mobile:''
 				}
 				
 			}
@@ -171,6 +172,15 @@
 		components:{
 			Footer,
 			Icon
+		},
+		created(){
+			this.$axios.get(`/api/person/person?token=${this.user.userFlag}`)
+			.then(res=>{
+				this.user.mobile=res.data.mobile;
+			})
+			.catch(err=>{
+				console.log(err);
+			})
 		}
 	}
 </script>
