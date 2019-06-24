@@ -1,62 +1,65 @@
 <template>
 	<div class="restaurants">
-		<Row v-for="(value,index) in restaurants" :key="value.id">
-			<Col span="5" class="ivu-col-img">
-				<img :src="value.restaurant.image_path">
-			</Col>
-			<Col span="19" class="ivu-col-text">
-				<p class="Rname">
-					<span><b v-show="value.restaurant.is_premium">品牌</b>{{value.restaurant.name}}</span>
-					<span>
-						<Icon type="md-phone-portrait" />
-						<b>...</b>
-					</span>
-				</p>
-				<p>
-					<span>
-						<Rate disabled v-model="value.restaurant.rating"></Rate>
-						<span>{{value.restaurant.rating=='0'?'':value.restaurant.rating}}</span>
-						<span>月售{{value.restaurant.recent_order_num}}单</span>
-					</span>
-					<span class="delivery" v-show="value.restaurant.delivery_mode">{{value.restaurant.delivery_mode?value.restaurant.delivery_mode.text:''}}</span>
-				</p>
-				<p>
-					<span>
-						￥{{value.restaurant.float_minimum_order_amount}}起送
-						<Divider type="vertical" />
-						配送费￥{{value.restaurant.float_delivery_fee}}
-					</span>
-					<span>
-						{{value.restaurant.distance}}m    							
-						<Divider type="vertical" />
-						{{value.restaurant.order_lead_time}}分钟
-					</span>
-				</p>
-				<div class="support">
-					<span v-for="(v,i) in value.restaurant.support_tags" :key="i" v-show="v.type!=20">{{v.text}}</span>
-					<span class="reason" v-show="value.restaurant.recommend.reason!=''"><Icon type="md-thumbs-up" />{{value.restaurant.recommend.reason}}</span>
-				</div>
-				<div class="activity" :class="{activityShow:value.isShow}" v-show="value.restaurant.activities">
-					<p v-for="(v,i) in value.restaurant.activities" :key="v.id">
-						<span class="activity1" v-if="v.icon_name=='首'">{{v.icon_name}}</span>
-						<span class="activity2" v-else-if="v.icon_name=='减'||v.icon_name=='折'">{{v.icon_name}}</span>
-						<span class="activity3" v-else-if="v.icon_name=='换'||v.icon_name=='特'">{{v.icon_name}}</span>
-						<span class="activity4" v-else-if="v.icon_name=='新'">{{v.icon_name}}</span>
-						<span>{{v.description}}</span>
+		<div v-for="(value,index) in restaurants" :key="value.id" @click="next(value.id)">
+			<Row>
+				<Col span="5" class="ivu-col-img">
+					<img :src="value.image_path">
+				</Col>
+				<Col span="19" class="ivu-col-text">
+					<p class="Rname">
+						<span><b v-show="value.is_premium">品牌</b>{{value.name}}</span>
+						<span>
+							<Icon type="md-phone-portrait" />
+							<b>...</b>
+						</span>
 					</p>
-					<section  v-show="value.restaurant.supports">
-						<p v-for="(v,i) in value.restaurant.supports" :key="v.id">
-							<span class="activity5">{{v.icon_name}}</span>
+					<p>
+						<span>
+							<Rate disabled v-model="value.rating"></Rate>
+							<span>{{value.rating=='0'?'':value.rating}}</span>
+							<span>月售{{value.recent_order_num}}单</span>
+						</span>
+						<span class="delivery" v-show="value.delivery_mode">{{value.delivery_mode?value.delivery_mode.text:''}}</span>
+					</p>
+					<p>
+						<span>
+							￥{{value.float_minimum_order_amount}}起送
+							<Divider type="vertical" />
+							配送费￥{{value.float_delivery_fee}}
+						</span>
+						<span>
+							{{value.distance}}m    							
+							<Divider type="vertical" />
+							{{value.order_lead_time}}分钟
+						</span>
+					</p>
+					<!-- <div class="support">
+						<span v-for="(v,i) in value.support_tags" :key="i" v-show="v.type!=20">{{v.text}}</span>
+						<span class="reason" v-show="value.recommend.reason!=''"><Icon type="md-thumbs-up" />{{value.recommend.reason}}</span>
+					</div>
+					<div class="activity" :class="{activityShow:value.isShow}" v-show="value.activities">
+						<p v-for="(v,i) in value.activities" :key="v.id">
+							<span class="activity1" v-if="v.icon_name=='首'">{{v.icon_name}}</span>
+							<span class="activity2" v-else-if="v.icon_name=='减'||v.icon_name=='折'">{{v.icon_name}}</span>
+							<span class="activity3" v-else-if="v.icon_name=='换'||v.icon_name=='特'">{{v.icon_name}}</span>
+							<span class="activity4" v-else-if="v.icon_name=='新'">{{v.icon_name}}</span>
 							<span>{{v.description}}</span>
 						</p>
-					</section>
-					<div @click="toggleDetail(index,value.restaurant.authentic_id)" v-show="value.restaurant.activities.length+value.restaurant.supports.length>'2'">
-						{{value.restaurant.activities.length+value.restaurant.supports.length}}个活动
-						<Icon type="md-arrow-dropdown" :class="{dropUp:value.isShow}"/>
-					</div>
-				</div>
-			</Col>
-		</Row>
+						<section  v-show="value.supports">
+							<p v-for="(v,i) in value.supports" :key="v.id">
+								<span class="activity5">{{v.icon_name}}</span>
+								<span>{{v.description}}</span>
+							</p>
+						</section>
+						<div @click="toggleDetail(index,value.authentic_id)" v-show="value.activities.length+value.supports.length>'2'">
+							{{value.activities.length+value.supports.length}}个活动
+							<Icon type="md-arrow-dropdown" :class="{dropUp:value.isShow}"/>
+						</div>
+					</div> -->
+				</Col>
+			</Row>
+		</div>
+		
 	</div>
 </template>
 <style>
@@ -209,6 +212,9 @@
 						this.restaurants[i].isShow=!this.restaurants[i].isShow;
 					}
 				};
+			},
+			next(id){
+				this.$router.push({path:`/detail?restaurant_id=${id}`})
 			}
 		},
 		// watch:{

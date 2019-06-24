@@ -11,7 +11,7 @@ conn.connect(err=>{
         return;
     }
 });
-//用户登录验证码生成
+//店铺排序
 router.get('/restaurant',(req,res)=>{
     let selectUser;
     if(req.query.order=='1'){
@@ -21,14 +21,22 @@ router.get('/restaurant',(req,res)=>{
         selectUser='SELECT * from restaurant order by distance';
     }else if(req.query.order=='3'){
         // 按照距离升序排列
-        selectUser='SELECT * from restaurant order by distance';
-    }
-    const selectUser='SELECT mobile FROM user where token=?';    
-    conn.query(selectUser,[req.query.token], function(err, result) {
+        selectUser='SELECT * from restaurant order by recent_order_num desc';
+    } 
+    conn.query(selectUser, function(err, result) {
         if (err)console.log(err);
-        const mobile=result.length=='0'?'':result[0].mobile;
         res.end(JSON.stringify({
-            mobile:mobile,
+            restaurant:result,
+            resp_code:'200',
+        })); 
+    })
+})
+router.get('/entries',(req,res)=>{
+    select='select * from entries';
+    conn.query(select,function(err,result){
+        if(err)console.log(err);
+        res.end(JSON.stringify({
+            entries:result,
             resp_code:'200',
         })); 
     })

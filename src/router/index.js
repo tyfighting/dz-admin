@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 const Login=()=>import('@/components/Login/Login')
-const Agreement=()=>import ('@/components/Login/Agreement')
-const Index=()=>import ('@/components/Index/Index')
-const Personal=()=>import ('@/components/Personal/Personal')
-const Discover=()=>import ('@/components/Discover/Discover')
-const Order=()=>import ('@/components/Order/Order')
-const helloVue=()=>import ('@/components/helloVue')
+const Agreement=()=>import('@/components/Login/Agreement')
+const Index=()=>import('@/components/Index/Index')
+const Personal=()=>import('@/components/Personal/Personal')
+const Discover=()=>import('@/components/Discover/Discover')
+const Order=()=>import('@/components/Order/Order')
+const helloVue=()=>import('@/components/helloVue')
+const Detail=()=>import('@/components/Detail/Detail')
 
 Vue.use(Router)
 
@@ -63,6 +64,11 @@ export default new Router({
       path:'/helloVue',
       name:'helloVue',
       component:helloVue
+    },
+    {
+      path:'/detail',
+      name:'Detail',
+      component:Detail
     }
   ]
 })

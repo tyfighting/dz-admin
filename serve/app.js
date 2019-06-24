@@ -19,14 +19,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 // 引入模块
 const user=require('./api/user');//路由，后台
 const person=require('./api/person');
-// const user = require('./api/user');
+const index = require('./api/index');
+const detail = require('./api/detail');
 // 挂载路由到应用
 app.use('/api/user', user);
 app.use('/api/person', person);
-// app.use({
-//   '/api/user': user,
-//   '/api/person': person
-// })
+app.use('/api/index', index);
+app.use('/api/detail', detail);
 // 后端api路由结束
 
 // 监听端口

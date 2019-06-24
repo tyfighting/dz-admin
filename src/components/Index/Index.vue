@@ -224,27 +224,24 @@
 			Divider
 		},
 		created(){
-			this.getFoodList();
-			this.getRestaurants();
+			this.$axios.all([this.getEntries(),this.getRestaurant()])
+			.then(this.$axios.spread( (acct, perms)=> {
+				[this.swiperSlide,this.restaurants]=[acct.data.entries, perms.data.restaurant];
+				for (var i = 0; i < this.restaurants.length; i++) {
+					this.restaurants[i].isShow=false;
+				};
+				for (var j = 0; j < this.swiperSlide.length; j+=10) {
+					this.swiperSlides.push(this.swiperSlide.slice(j,j+10));
+				}
+			}))
+			.catch(err=>console.log(err));
 		},
 		methods:{
-			getFoodList(){
-				this.$axios.get("../../../static/json/foodNav.json")
-				.then((res)=>{
-					let swiperSlides=res.data[0].entries;	
-					for (var i = 0; i < swiperSlides.length; i+=10) {
-						this.swiperSlides.push(swiperSlides.slice(i,i+10));
-					}
-				})
+			getEntries(){
+				return this.$axios.get('/api/index/entries')
 			},
-			getRestaurants(){
-				this.$axios.get("../../../static/json/restaurants.json")
-				.then((res)=>{		
-					for (var i = 0; i < res.data.items.length; i++) {
-						res.data.items[i].isShow=false;
-					};
-					this.restaurants=res.data.items
-				})
+			getRestaurant(){
+				return this.$axios.get('/api/index/restaurant?order=1')
 			},
 			change(){
 				this.restaurants=_shuffle(this.restaurants)
@@ -252,17 +249,19 @@
 			order(num){
 				this.activeFlag=[false,false,false,false];
 				this.activeFlag[num-1]=true;
-				if(num=='1'){
-
-				}else if(num=='2'){
-					this.restaurants=this._.shuffle(this.restaurants);
-				}else if(num=='3'){
-					this.restaurants=this._.shuffle(this.restaurants);
-					// this.restaurants.forEach(v => {
-					// 	console.log(v.restaurant.name)
-					// });
-				}else if(num=='4'){
-
+				// if(num=='2'){
+				// 	this.restaurants=this._.shuffle(this.restaurants);
+				// }else if(num=='3'){
+				// 	this.restaurants=this._.shuffle(this.restaurants);
+				// }
+				if(num!='4'){
+					this.$axios.get(`/api/index/restaurant?order=${num}`)
+					.then((res)=>{
+						this.restaurants=res.data.restaurant
+						for (var i = 0; i < this.restaurants.length; i++) {
+							this.restaurants[i].isShow=false;
+						};
+					})
 				}
 			}
 		}

@@ -11,7 +11,7 @@ conn.connect(err=>{
         return;
     }
 });
-//用户登录验证码生成
+//用户登录验证
 router.get('/person',(req,res)=>{
     const selectUser='SELECT mobile FROM user where token=?';    
     conn.query(selectUser,[req.query.token], function(err, result) {
