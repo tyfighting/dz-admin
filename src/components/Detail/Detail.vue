@@ -1,7 +1,10 @@
 <template>
     <div>
         <div class="header">
-            <nav :style="{backgroundImage:'url('+restaurant.background+')'}" ></nav>
+            <nav :style="{backgroundImage:'url('+restaurant.background+')'}" >
+                <img :src="restaurant.image_path">
+            </nav>
+            
         </div>
         
     </div>
