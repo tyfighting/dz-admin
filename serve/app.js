@@ -10,6 +10,7 @@ app.use(function(req, res, next) {
   // res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Origin", "*"); 
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader('Content-Type','text/plain;charset=utf-8');//设置返回值中文编码方式
   next();
 });
 

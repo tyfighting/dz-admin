@@ -227,8 +227,32 @@
 			this.$axios.all([this.getEntries(),this.getRestaurant()])
 			.then(this.$axios.spread( (acct, perms)=> {
 				[this.swiperSlide,this.restaurants]=[acct.data.entries, perms.data.restaurant];
-				for (var i = 0; i < this.restaurants.length; i++) {
+				for (let i = 0; i < this.restaurants.length; i++) {
+					this.restaurants[i].activity=[];
+					this.restaurants[i].supports=[];
+					// Object.defineProperty(this.restaurants[i],'isShow',{
+					// 	value:false
+					// })
 					this.restaurants[i].isShow=false;
+					if(this.restaurants[i]['activety1']){
+						let arr=this.restaurants[i]['activety1'].split(";")
+						let arrChange=[];
+						arr.forEach(element => {
+							arrChange.push('满'+element.split(',')[0]+'减'+element.split(',')[1]);                           
+						});
+						this.restaurants[i].activity.push({
+							icon_name:'减',
+							description:arrChange.join(";")
+						});
+					}
+					this.changeInfo(this.restaurants[i].activety2,this.restaurants[i].activity,'特','特价商品'+this.restaurants[i].activety2+'元起');
+					this.changeInfo(this.restaurants[i].activety3,this.restaurants[i].activity,'首','新用户下单立减'+this.restaurants[i].activety3+'元');
+					this.changeInfo(this.restaurants[i].activety4,this.restaurants[i].activity,'新','本店新用户立减'+this.restaurants[i].activety4+'元');
+					this.changeInfo(this.restaurants[i].activety5,this.restaurants[i].activity,'折','折扣商品'+this.restaurants[i].activety5+'折起');
+					this.changeInfo(this.restaurants[i].supports1,this.restaurants[i].supports,'赔','商家原因导致订单取消，赔付代金券');
+					this.changeInfo(this.restaurants[i].supports2,this.restaurants[i].supports,'保','该商户食品安全已由国泰产险承担，食品安全有保障');
+					this.changeInfo(this.restaurants[i].supports3,this.restaurants[i].supports,'票','该商家支持开发票，请在下单时填写好发票抬头');
+					this.changeInfo(this.restaurants[i].supports4,this.restaurants[i].supports,'准','超时10分钟立享赔付');
 				};
 				for (var j = 0; j < this.swiperSlide.length; j+=10) {
 					this.swiperSlides.push(this.swiperSlide.slice(j,j+10));
@@ -237,6 +261,14 @@
 			.catch(err=>console.log(err));
 		},
 		methods:{
+			changeInfo(str,arr,name,desc){
+				if(str){
+					arr.push({
+						icon_name:name,
+						description:desc
+					});
+				}
+			},
 			getEntries(){
 				return this.$axios.get('/api/index/entries')
 			},
@@ -249,17 +281,12 @@
 			order(num){
 				this.activeFlag=[false,false,false,false];
 				this.activeFlag[num-1]=true;
-				// if(num=='2'){
-				// 	this.restaurants=this._.shuffle(this.restaurants);
-				// }else if(num=='3'){
-				// 	this.restaurants=this._.shuffle(this.restaurants);
-				// }
 				if(num!='4'){
 					this.$axios.get(`/api/index/restaurant?order=${num}`)
 					.then((res)=>{
 						this.restaurants=res.data.restaurant
 						for (var i = 0; i < this.restaurants.length; i++) {
-							this.restaurants[i].isShow=false;
+							this.$set(this.restaurants[i],'isShow',false)
 						};
 					})
 				}

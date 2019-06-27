@@ -36,9 +36,9 @@
 					<!-- <div class="support">
 						<span v-for="(v,i) in value.support_tags" :key="i" v-show="v.type!=20">{{v.text}}</span>
 						<span class="reason" v-show="value.recommend.reason!=''"><Icon type="md-thumbs-up" />{{value.recommend.reason}}</span>
-					</div>
-					<div class="activity" :class="{activityShow:value.isShow}" v-show="value.activities">
-						<p v-for="(v,i) in value.activities" :key="v.id">
+					</div>-->
+					<div class="activity" :class="{activityShow:value.isShow}" v-show="value.activity">
+						<p v-for="(v,i) in value.activity" :key="v.id">
 							<span class="activity1" v-if="v.icon_name=='首'">{{v.icon_name}}</span>
 							<span class="activity2" v-else-if="v.icon_name=='减'||v.icon_name=='折'">{{v.icon_name}}</span>
 							<span class="activity3" v-else-if="v.icon_name=='换'||v.icon_name=='特'">{{v.icon_name}}</span>
@@ -46,16 +46,16 @@
 							<span>{{v.description}}</span>
 						</p>
 						<section  v-show="value.supports">
-							<p v-for="(v,i) in value.supports" :key="v.id">
+							<p v-for="(v,i) in value.supports" :key="i">
 								<span class="activity5">{{v.icon_name}}</span>
 								<span>{{v.description}}</span>
 							</p>
 						</section>
-						<div @click="toggleDetail(index,value.authentic_id)" v-show="value.activities.length+value.supports.length>'2'">
-							{{value.activities.length+value.supports.length}}个活动
+						<div @click.stop="toggleDetail(index,value.id)" v-show="value.activity.length+value.supports.length>'2'">
+							{{value.activity.length+value.supports.length}}个活动
 							<Icon type="md-arrow-dropdown" :class="{dropUp:value.isShow}"/>
 						</div>
-					</div> -->
+					</div>
 				</Col>
 			</Row>
 		</div>
@@ -207,9 +207,10 @@
 		},
 		methods:{			
 			toggleDetail(index,id){
-				for (var i = 0; i < this.restaurants.length; i++) {
-					if(this.restaurants[i].restaurant.authentic_id==id){
+				for (let i = 0; i < this.restaurants.length; i++) {
+					if(this.restaurants[i].id==id){
 						this.restaurants[i].isShow=!this.restaurants[i].isShow;
+						this.$forceUpdate();
 					}
 				};
 			},
