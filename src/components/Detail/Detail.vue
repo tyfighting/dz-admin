@@ -14,10 +14,31 @@
                     </p>
                 </div>
                 <div class="index-2"></div>
-                <div class="index-3">{{arrChange}}</div>
+                <div class="index-3" v-if="restaurant.activity[0]" type="primary" @click="modal = true">
+                    <span class="activity1" v-if="restaurant.activity[0].icon_name=='首单'">{{restaurant.activity[0].icon_name}}</span>
+                    <span class="activity2" v-else-if="restaurant.activity[0].icon_name=='满减'||restaurant.activity[0].icon_name=='折扣'">{{restaurant.activity[0].icon_name}}</span>
+                    <span class="activity3" v-else-if="restaurant.activity[0].icon_name=='特价'">{{restaurant.activity[0].icon_name}}</span>
+                    <span class="activity4" v-else-if="restaurant.activity[0].icon_name=='新客'">{{restaurant.activity[0].icon_name}}</span>
+                    <span>{{restaurant.activity[0].description}}</span>
+                    <b v-show="restaurant.activity.length>'2'">{{restaurant.activity.length}}个优惠<Icon type="md-arrow-dropdown" /></b>
+                </div>
             </div>
         </div>
-        
+        <Modal v-model="modal">
+            <p slot="header">
+                <span>优惠活动</span>
+            </p>
+            <div class="center">
+                <p v-for="(v,i) in restaurant.activity" :key="i">
+                    <span class="activity1" v-if="v.icon_name=='首单'">{{v.icon_name}}</span>
+                    <span class="activity2" v-else-if="v.icon_name=='满减'||v.icon_name=='折扣'">{{v.icon_name}}</span>
+                    <span class="activity3" v-else-if="v.icon_name=='特价'">{{v.icon_name}}</span>
+                    <span class="activity4" v-else-if="v.icon_name=='新客'">{{v.icon_name}}</span>
+                    <span>{{v.description}}</span>
+                </p>
+            </div>
+            <div slot="footer"></div>
+        </Modal>
     </div>
 </template>
 <style lang="scss">
@@ -57,22 +78,97 @@
             }
             .name{
                 display: block;
-                font-size: 18px;
+                font-size: 20px;
                 font-weight: bold;
                 color: #333;
                 margin-bottom: 5px;
             }
         }
+        .index-3{
+            width: 80%;
+            margin: 0 auto;
+            text-align: left;
+            position: relative;
+            padding: 10px 0;
+            span:first-child{
+                color: #fff;
+                padding: 2px;
+                font-size: 10px;
+            }
+            .activity1{
+		        background: #70bc46;
+            }
+            .activity2{
+                background: #f07373;
+            }
+            .activity3{
+                background: #f1884f;
+            }
+            .activity4{
+                background: #00b762;
+            }
+            .activity5{
+                background: #999;
+            }
+            b{
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+}
+.ivu-modal{
+    width: 100%!important;
+    margin: 0;
+    bottom: 0;
+    position: fixed;
+    top: auto;
+    .ivu-modal-content{
+        box-shadow: none;
+        border-radius: 0;
+        padding-top:20px;
+        .ivu-modal-header p{
+            text-align: center;
+            font-size: 18px; 
+        }
+        .center{
+            line-height: 26px;
+            padding-bottom:30px; 
+            span:first-child{
+                color: #fff;
+                padding: 2px;
+                font-size: 10px;
+            }
+            .activity1{
+                background: #70bc46;
+            }
+            .activity2{
+                background: #f07373;
+            }
+            .activity3{
+                background: #f1884f;
+            }
+            .activity4{
+                background: #00b762;
+            }
+            .activity5{
+                background: #999;
+            }
+        }
+        .ivu-modal-footer,.ivu-modal-header{
+            border: 0;
+        }
     }
 }
 </style>
 <script>
+    import {Modal,Icon} from 'iview'
     export default {
         data(){
             return {
-                restaurant:[],
+                restaurant:{activity:[]},
                 food:[],
-                arrChange:''
+                modal: false,
             }
         },
         beforeRouteEnter (to, from, next) {
@@ -80,20 +176,35 @@
                 vm.$axios(`/api/detail/index?restaurant_id=${to.query.restaurant_id}`)
                 .then(res=>{
                     [vm.restaurant,vm.food]=[res.data.restaurant[0],res.data.food]
-                    let arr=vm.restaurant.activety1.split(";")
+                    let arr=vm.restaurant.activity1.split(";")
+                    vm.restaurant.activity=[]
                     let arrChange=[];
                     arr.forEach(element => {
                         arrChange.push('满'+element.split(',')[0]+'减'+element.split(',')[1])                            
                     });
-                    vm.arrChange=arrChange.join(";")
+                    vm.changeInfo(vm.restaurant.activity1,vm.restaurant.activity,'满减',arrChange.join(";"));					
+                    vm.changeInfo(vm.restaurant.activity2,vm.restaurant.activity,'特价','特价商品'+vm.restaurant.activity2+'元起');
+					vm.changeInfo(vm.restaurant.activity3,vm.restaurant.activity,'首单','新用户下单立减'+vm.restaurant.activity3+'元');
+					vm.changeInfo(vm.restaurant.activity4,vm.restaurant.activity,'新客','本店新用户立减'+vm.restaurant.activity4+'元');
+					vm.changeInfo(vm.restaurant.activity5,vm.restaurant.activity,'折扣','折扣商品'+vm.restaurant.activity5+'折起');
+					console.log(vm.restaurant)
                 })
                 .catch(err=>console.log)
             })
         },
         methods:{
-            getInfo(){
-                
-            }
+			changeInfo(str,arr,name,desc){
+				if(str){
+					arr.push({
+						icon_name:name,
+						description:desc
+					});
+				}
+			},
+        },
+        components:{
+            Modal,
+            Icon
         }
     }
 </script>

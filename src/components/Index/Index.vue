@@ -230,12 +230,9 @@
 				for (let i = 0; i < this.restaurants.length; i++) {
 					this.restaurants[i].activity=[];
 					this.restaurants[i].supports=[];
-					// Object.defineProperty(this.restaurants[i],'isShow',{
-					// 	value:false
-					// })
 					this.restaurants[i].isShow=false;
-					if(this.restaurants[i]['activety1']){
-						let arr=this.restaurants[i]['activety1'].split(";")
+					if(this.restaurants[i]['activity1']){
+						let arr=this.restaurants[i]['activity1'].split(";")
 						let arrChange=[];
 						arr.forEach(element => {
 							arrChange.push('满'+element.split(',')[0]+'减'+element.split(',')[1]);                           
@@ -245,10 +242,10 @@
 							description:arrChange.join(";")
 						});
 					}
-					this.changeInfo(this.restaurants[i].activety2,this.restaurants[i].activity,'特','特价商品'+this.restaurants[i].activety2+'元起');
-					this.changeInfo(this.restaurants[i].activety3,this.restaurants[i].activity,'首','新用户下单立减'+this.restaurants[i].activety3+'元');
-					this.changeInfo(this.restaurants[i].activety4,this.restaurants[i].activity,'新','本店新用户立减'+this.restaurants[i].activety4+'元');
-					this.changeInfo(this.restaurants[i].activety5,this.restaurants[i].activity,'折','折扣商品'+this.restaurants[i].activety5+'折起');
+					this.changeInfo(this.restaurants[i].activity2,this.restaurants[i].activity,'特','特价商品'+this.restaurants[i].activity2+'元起');
+					this.changeInfo(this.restaurants[i].activity3,this.restaurants[i].activity,'首','新用户下单立减'+this.restaurants[i].activity3+'元');
+					this.changeInfo(this.restaurants[i].activity4,this.restaurants[i].activity,'新','本店新用户立减'+this.restaurants[i].activity4+'元');
+					this.changeInfo(this.restaurants[i].activity5,this.restaurants[i].activity,'折','折扣商品'+this.restaurants[i].activity5+'折起');
 					this.changeInfo(this.restaurants[i].supports1,this.restaurants[i].supports,'赔','商家原因导致订单取消，赔付代金券');
 					this.changeInfo(this.restaurants[i].supports2,this.restaurants[i].supports,'保','该商户食品安全已由国泰产险承担，食品安全有保障');
 					this.changeInfo(this.restaurants[i].supports3,this.restaurants[i].supports,'票','该商家支持开发票，请在下单时填写好发票抬头');
