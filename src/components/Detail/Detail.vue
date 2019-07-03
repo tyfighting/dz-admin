@@ -24,6 +24,18 @@
                 </div>
             </div>
         </div>
+        <div class="wrap">
+            <div class="menuWrapper" ref="menuWrapper">
+                <ul class="content">
+                    <li v-for="(v,i) in food" :key="v.type">{{v.type_name}}</li>
+                </ul>
+            </div>
+            <div class="foodsWrapper" ref="foodsWrapper">
+                <ul class="content" v-for="(value,index) in food" :key="value.type">
+                    <li v-for="(v,i) in value.foods" :key="v.food_id">{{v.name}}</li>
+                </ul>
+            </div>
+        </div>
         <Modal v-model="modal">
             <p slot="header">
                 <span>优惠活动</span>
@@ -117,6 +129,10 @@
         }
     }
 }
+.wrap{
+    display: flex;
+    justify-content: space-between;
+}
 .ivu-modal{
     width: 100%!important;
     margin: 0;
@@ -163,6 +179,7 @@
 </style>
 <script>
     import {Modal,Icon} from 'iview'
+    import BScroll from 'better-scroll'
     export default {
         data(){
             return {
@@ -187,9 +204,14 @@
 					vm.changeInfo(vm.restaurant.activity3,vm.restaurant.activity,'首单','新用户下单立减'+vm.restaurant.activity3+'元');
 					vm.changeInfo(vm.restaurant.activity4,vm.restaurant.activity,'新客','本店新用户立减'+vm.restaurant.activity4+'元');
 					vm.changeInfo(vm.restaurant.activity5,vm.restaurant.activity,'折扣','折扣商品'+vm.restaurant.activity5+'折起');
-					console.log(vm.restaurant)
+                    vm.food=vm.mapArr(vm.food)
                 })
                 .catch(err=>console.log)
+            })
+        },
+        mounted(){
+            this.$nextTick(()=>{
+                this.initScroll();
             })
         },
         methods:{
@@ -200,7 +222,64 @@
 						description:desc
 					});
 				}
-			},
+            },
+            initScroll(){
+                this.menuScroll=new BScroll(this.$refs.menuWrapper,{
+                    click: true
+                })
+                this.foodsScroll=new BScroll(this.$refs.foodsScroll,{
+                    click: true
+                })
+            },
+            mapArr(arr) {
+                let newArr =[];
+                let newArr1 =[];
+                arr.forEach((v, i) => {
+                    let index = -1;
+                    let alreadyExists = newArr.some((newV, j) => {
+                        if (v.type === newV.type) {
+                            index = j;
+                            return true;
+                        }
+                    });
+                    if (!alreadyExists) {
+                        newArr.push({
+                            type: v.type,
+                            type_name:v.type_name,
+                            foods:[{
+                                benefit: v.benefit,
+                                description: v.description,
+                                discount: v.discount,
+                                food_id: v.food_id,
+                                id: v.id,
+                                lowest: v.lowest,
+                                month_sales: v.month_sales,
+                                name: v.name,
+                                price: v.price,
+                                restaurant_id: v.restaurant_id,
+                                satisfy_rate: v.satisfy_rate,
+                                text: v.text
+                            }]
+                        });
+                    } else {
+                        newArr[index].foods.push({
+                            benefit: v.benefit,
+                            description: v.description,
+                            discount: v.discount,
+                            food_id: v.food_id,
+                            id: v.id,
+                            lowest: v.lowest,
+                            month_sales: v.month_sales,
+                            name: v.name,
+                            price: v.price,
+                            restaurant_id: v.restaurant_id,
+                            satisfy_rate: v.satisfy_rate,
+                            text: v.text
+                        })
+                    }
+                });
+                return newArr;
+            }
         },
         components:{
             Modal,
