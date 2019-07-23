@@ -25,15 +25,26 @@
             </div>
         </div>
         <div class="wrap">
-            <div class="menuWrapper" ref="menuWrapper">
-                <ul class="content">
-                    <li v-for="(v,i) in food" :key="v.type">{{v.type_name}}</li>
-                </ul>
-            </div>
+            <ul class="menuWrapper" ref="menuWrapper">
+                <li v-for="(v,i) in food" :key="v.type">{{v.type_name}}</li>
+            </ul>
             <div class="foodsWrapper" ref="foodsWrapper">
-                <ul class="content" v-for="(value,index) in food" :key="value.type">
-                    <li v-for="(v,i) in value.foods" :key="v.food_id">{{v.name}}</li>
-                </ul>
+                <div class="content" v-for="(value,index) in food" :key="value.type">
+                    <p class="typeName">{{value.type_name}}</p>
+                    <div v-for="(v,i) in value.foods" :key="v.food_id">
+                        <p class="name">{{v.name}}</p>   
+                        <p>{{v.decrible}}</p>                
+                        <p class="price">
+                            <span :class="{middleLine:v.discount}">{{v.price}}</span>
+                            <span v-show="v.discount">{{v.discount}}</span>
+                        </p>
+                        <p class="change">
+                            <Icon type="md-add-circle" />
+                            <span class="number"></span>
+                            <Icon type="md-remove-circle" />
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
         <Modal v-model="modal">
@@ -132,6 +143,23 @@
 .wrap{
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
+    .menuWrapper{
+        flex: 1;
+        background: #fff;
+        border-right: 1px solid #eee;
+        li{
+            line-height: 40px;
+            border-top:1px solid #eee;
+            &:first-child{
+                border-top: 0;
+            }
+        }        
+    }
+    .foodsWrapper{
+        flex: 2.5;
+        background: #fff;
+    }
 }
 .ivu-modal{
     width: 100%!important;
