@@ -3,7 +3,7 @@
 		<div v-for="(value,index) in restaurants" :key="value.id" @click="next(value.id)">
 			<Row>
 				<Col span="5" class="ivu-col-img">
-					<img :src="value.image_path">
+					<img :src="value.image_path"/>
 				</Col>
 				<Col span="19" class="ivu-col-text">
 					<p class="Rname">
@@ -38,7 +38,7 @@
 						<span class="reason" v-show="value.recommend.reason!=''"><Icon type="md-thumbs-up" />{{value.recommend.reason}}</span>
 					</div>-->
 					<div class="activity" :class="{activityShow:value.isShow}" v-show="value.activity">
-						<p v-for="(v,i) in value.activity" :key="v.id">
+						<p v-for="v in value.activity" :key="v.id">
 							<span class="activity1" v-if="v.icon_name=='首'">{{v.icon_name}}</span>
 							<span class="activity2" v-else-if="v.icon_name=='减'||v.icon_name=='折'">{{v.icon_name}}</span>
 							<span class="activity3" v-else-if="v.icon_name=='换'||v.icon_name=='特'">{{v.icon_name}}</span>
@@ -69,7 +69,7 @@
 	}
 	.restaurants .ivu-row{
 		padding: 10px 0;
-	    border-bottom: 1px solid #eee;
+		border-bottom: 1px solid #eee;
 	}
 	.restaurants .ivu-row:last-child{
 		border:0;
